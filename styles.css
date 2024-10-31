@@ -10,4 +10,5 @@ body {
 svg {
     max-width: 100%;
     height: auto;
+    opacity: 0;
 }

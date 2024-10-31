@@ -2,6 +2,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Get the SVG element
     const svg = document.querySelector('svg');
     
+    // Make the SVG visible
+    svg.style.transition = 'opacity 4s ease-in-out';
+    svg.style.opacity = '1';
+    
     // Create a Set to store unique fill colors
     const uniqueFillColors = new Set();
     
