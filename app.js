@@ -34,9 +34,16 @@ document.addEventListener('DOMContentLoaded', () => {
         colorMap.set(color, hsl);
     });
 
+    // Set initial background color
+    const firstPathColor = paths[0].getAttribute('fill');
+    if (firstPathColor && colorMap.has(firstPathColor)) {
+        const [h, s, l] = colorMap.get(firstPathColor);
+        document.body.style.backgroundColor = `hsl(${h}, ${s}%, ${l}%)`;
+    }
+
     // Animation loop
     let hueShift = 0;
-    const UPDATE_INTERVAL = 100; // milliseconds
+    const UPDATE_INTERVAL = 500; // milliseconds
     setInterval(() => {
         hueShift = (hueShift + 10) % 360; // Increment hue by 10 degrees each interval
         
@@ -45,8 +52,14 @@ document.addEventListener('DOMContentLoaded', () => {
             if (originalColor && colorMap.has(originalColor)) {
                 const [h, s, l] = colorMap.get(originalColor);
                 const newHue = (h + hueShift) % 360;
-                paths[i].style.transition = 'fill 1s';
+                paths[i].style.transition = 'fill 0.5s ease';
                 paths[i].style.fill = `hsl(${newHue}, ${s}%, ${l}%)`;
+
+                // Update background color to match first path
+                if (i === 0) {
+                    document.body.style.transition = 'background-color 0.5s ease';
+                    document.body.style.backgroundColor = `hsl(${newHue}, ${s}%, ${l}%)`;
+                }
             }
         }
     }, UPDATE_INTERVAL);
