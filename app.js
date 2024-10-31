@@ -36,8 +36,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Animation loop
     let hueShift = 0;
+    const UPDATE_INTERVAL = 100; // milliseconds
     setInterval(() => {
-        hueShift = (hueShift + 10) % 360; // Increment hue by 10 degrees each second
+        hueShift = (hueShift + 10) % 360; // Increment hue by 10 degrees each interval
         
         for (let i = 0; i < paths.length; i++) {
             const originalColor = paths[i].getAttribute('fill');
@@ -48,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 paths[i].style.fill = `hsl(${newHue}, ${s}%, ${l}%)`;
             }
         }
-    }, 1000);
+    }, UPDATE_INTERVAL);
 });
 
 // Helper function to convert RGB to HSL
