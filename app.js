@@ -41,7 +41,16 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.backgroundColor = `hsl(${h}, ${s}%, ${l}%)`;
     }
 
-    // Animation loop
+    // Set up initial styles and animations for paths
+    paths.forEach((path, index) => {
+        path.style.opacity = '0';
+        path.style.transition = 'opacity 1s ease-in, fill 0.5s';
+        setTimeout(() => {
+            path.style.opacity = '1';
+        }, index * 100); // delay between each path
+    });
+
+    // Animation loop for color changes
     let hueShift = 0;
     const UPDATE_INTERVAL = 200; // milliseconds
     setInterval(() => {
@@ -52,7 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (originalColor && colorMap.has(originalColor)) {
                 const [h, s, l] = colorMap.get(originalColor);
                 const newHue = (h + hueShift) % 360;
-                paths[i].style.transition = 'fill 0.5s';
                 paths[i].style.fill = `hsl(${newHue}, ${s}%, ${l}%)`;
 
                 // Update background color to match first path
