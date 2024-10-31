@@ -15,6 +15,9 @@ This demo is just a bit of fun to take a recraft-generated SVG and use JS and CS
 
 [zeke.github.io/red-panda-svg](https://zeke.github.io/red-panda-svg)
 
+---
+
+https://github.com/user-attachments/assets/2207c31e-d402-4283-811d-f38d6a36b6bc
 
 
 
